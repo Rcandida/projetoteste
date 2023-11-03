@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table
-public class Simulação {
+public class Simulacao {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
