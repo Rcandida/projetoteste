@@ -23,9 +23,14 @@ public class EmpresaService {
 			throw new CommonsException(HttpStatus.BAD_REQUEST, "unichristus.projetoteste.service.empresa.badrequest.exception", "Nome excede 150 caracteres.");
 		}
 		
-		if(!repository.findByNomeEmpresa(dto.getNomeEmpresa()).isEmpty()){
-			throw new CommonsException(HttpStatus.CONFLICT, "unichristus.projetoteste.service.empresa.conflict.exception", "Empresa já existe");
+		var empresaUpdate = repository.findByNomeEmpresa(dto.getNomeEmpresa());
+		
+		if(!empresaUpdate.isEmpty()){
 			
+			if(!dto.getIdEmpresa().equals(empresaUpdate.get().getIdEmpresa()))  {
+			
+			throw new CommonsException(HttpStatus.CONFLICT, "unichristus.projetoteste.service.empresa.conflict.exception", "Empresa já existe");
+		}
 		}
 		
 		if(dto.getIdEmpresa() != null) {

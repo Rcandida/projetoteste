@@ -20,10 +20,10 @@ public class Empresa {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private String idEmpresa;
 	
-	@Column(unique = true, length = 150)
+	@Column(length = 150)
 	private String nomeEmpresa;
 	
-	@Column(length = 14)
+	@Column(unique = true, length = 14)
 	private String cnpj;
 	
 	@Column(length = 15)

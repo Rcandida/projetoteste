@@ -1,7 +1,6 @@
 package br.edu.unichristus.projetoteste.data.dto;
 
-import java.time.LocalDate;
-
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,13 +14,13 @@ public class SimulacaoDTO {
 	private String idSimulacao;
 	
 	
-	//@ManyToOne
-	//private Empresa empresa;
+	private String idEmpresa;
 
 	
 	private String nomeSimulacao;
 
-	private LocalDate localDate = LocalDate.now();
+	
+	private LocalDateTime dataCriacao = LocalDateTime.now();
 
 }
 
