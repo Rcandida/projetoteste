@@ -1,5 +1,6 @@
 package br.edu.unichristus.projetoteste.data.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +25,7 @@ public class Planilha {
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	private Premissas premissas;
+	
 	
 	private String mesAno;
 	
