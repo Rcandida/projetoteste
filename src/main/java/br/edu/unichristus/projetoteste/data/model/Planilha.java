@@ -1,6 +1,7 @@
 package br.edu.unichristus.projetoteste.data.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,7 +22,7 @@ public class Planilha {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private String idPlanilha;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	private Premissas premissas;
 	
 	private String mesAno;
