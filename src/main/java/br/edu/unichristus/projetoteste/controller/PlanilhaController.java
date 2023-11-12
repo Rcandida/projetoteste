@@ -10,40 +10,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.unichristus.projetoteste.data.dto.SimulacaoDTO;
-import br.edu.unichristus.projetoteste.service.SimulacaoService;
+import br.edu.unichristus.projetoteste.data.dto.PlanilhaDTO;
+import br.edu.unichristus.projetoteste.service.PlanilhaService;
 import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
-@RequestMapping("/api/v1/simulacao")
-public class SimulacaoController {
+@RequestMapping("/api/v1/planilha")
+public class PlanilhaController {
 	
 	@Autowired
-	private SimulacaoService service;
+	private PlanilhaService service;
 	
-	@Operation(summary = "Cadastra o nome de um arquivo de simulacao | role: [USUARIO]", tags = "Simulacao")
+	
+	@Operation(summary = "Cadastra os dados de uma planilha de simulação | role: [USUARIO]", tags = "Planilha")
 	@PostMapping
-	public SimulacaoDTO create(@RequestBody SimulacaoDTO simulacao) {
-		return service.save(simulacao);
+	public PlanilhaDTO create(@RequestBody PlanilhaDTO planilha) {
+		return service.save(planilha);
 	}
 	
-	
-	@Operation(summary = "Retorna o nome de um arquivo de simulacao | role: [USUARIO]", tags = "Simulacao")
+	@Operation(summary = "Retorna os dados de uma planilha de simulação | role: [USUARIO]", tags = "Planilha")	
 	@GetMapping("/{id}")
-	public SimulacaoDTO findByIdSimulacao(@PathVariable("id") String id) {
-		return service.findByIdSimulacao(id);
+	public PlanilhaDTO findByIdPlanilha(@PathVariable("id") String id) {
+		return service.findByIdPlanilha(id);
 	}
 	
-	@Operation(summary = "Deleta o nome de um arquivo de simulacao | role: [USUARIO]", tags = "Simulacao")
+	@Operation(summary = "Deleta os dados de uma planilha de simulação | role: [USUARIO]", tags = "Planilha")
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable("id") String id) {
 		service.delete(id);
 	}
 	
-	@Operation(summary = "Retorna os nomes dos arquivos das simulações | role: [USUARIO]", tags = "Simulacao")
-	@GetMapping
+	@Operation(summary = "Retorna os dados de todas as planilhas de simulação | role: [USUARIO]", tags = "Planilha")
+	@GetMapping	
 	public ResponseEntity<?> findAll(){
 		return ResponseEntity.ok(service.findAll());
 	}
+
+	
+	
 
 }
