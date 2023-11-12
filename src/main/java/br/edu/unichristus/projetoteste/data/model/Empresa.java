@@ -21,7 +21,7 @@ public class Empresa {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private String idEmpresa;
 	
-	@Column(length = 150)
+	@Column(unique = true, length = 150)
 	private String nomeEmpresa;
 	
 	@Column(unique = true, length = 14)
