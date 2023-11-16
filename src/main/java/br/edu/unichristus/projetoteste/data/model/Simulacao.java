@@ -2,6 +2,7 @@ package br.edu.unichristus.projetoteste.data.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -26,7 +27,7 @@ public class Simulacao {
 	private String idSimulacao;
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Empresa empresa;
 
 	@Column(unique = true, length = 100)
