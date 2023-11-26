@@ -9,5 +9,7 @@ import br.edu.unichristus.projetoteste.data.model.Premissas;
 public interface PremissasRepository extends JpaRepository<Premissas, String>{
 	
 	Optional<Premissas> findByIdPremissas(String id);
+	
+	
 
 }

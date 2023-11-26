@@ -9,5 +9,5 @@ import br.edu.unichristus.projetoteste.data.model.Planilha;
 public interface PlanilhaRepository extends JpaRepository<Planilha, String> {
 	
 	Optional<Planilha> findByIdPlanilha(String id);
-
+	
 }
