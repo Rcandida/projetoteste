@@ -1,11 +1,9 @@
 package br.edu.unichristus.projetoteste.data.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,28 +20,25 @@ public class Premissas {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private String idPremissas;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	private Simulacao simulacao;
+	
 	
 	//Premissas
-	
-	private float premissa_faturamento;
-	private float premissa_investimentoInicial;
-	private float premissa_aliqComissaoVendas;
-	private float premissa_aliqImpostoFaturamento;
-    private float premissa_aliqImpostoLucro;
-    private float premissa_equipe;
-    private float premissa_despesasAdmin;
-    private float premissa_precoMedioInsumos;
-    private float premissa_precoMedioFreteEmb;
-    private float premissa_despesasJurosAmort;
-		
-  //Taxas de Retorno
-    private float retorno_payback;
-	private float retorno_tma;
-	private float retorno_tir;
-	private float retorno_vpfcx;
-	private float retorno_invest;
-	private float retorno_vpl;
+	private double premissa_faturamento;
+	private double premissa_investimentoInicial;
+	private double premissa_aliqComissaoVendas;
+	private double premissa_aliqImpostoFaturamento;
+    private double premissa_aliqImpostoLucro;
+    private double premissa_equipe;
+    private double premissa_despesasAdmin;
+    private double premissa_precoMedioInsumos;
+    private double premissa_precoMedioFreteEmb;
+    private double premissa_despesasJurosAmort;
+    
+    private String retorno_payback;
+	private double retorno_tma;
+	private double retorno_tir;
+	private double retorno_vpfcx;
+	private double retorno_invest;
+	private double retorno_vpl;
 	
 }
