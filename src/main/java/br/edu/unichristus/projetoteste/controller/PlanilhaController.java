@@ -1,52 +1,44 @@
 package br.edu.unichristus.projetoteste.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+import java.util.Map;
 
-import br.edu.unichristus.projetoteste.data.dto.PlanilhaDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import br.edu.unichristus.projetoteste.data.model.Planilha;
 import br.edu.unichristus.projetoteste.service.PlanilhaService;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/api/v1/planilha")
+@AllArgsConstructor
+@RequestMapping("planilha")
 public class PlanilhaController {
 	
 	@Autowired
 	private PlanilhaService service;
 	
-	
 	@Operation(summary = "Cadastra os dados de uma planilha de simulação | role: [USUARIO]", tags = "Planilha")
-	@PostMapping
-	public PlanilhaDTO create(@RequestBody PlanilhaDTO planilha) {
-		return service.save(planilha);
-	}
-	
-	@Operation(summary = "Retorna os dados de uma planilha de simulação | role: [USUARIO]", tags = "Planilha")	
-	@GetMapping("/{id}")
-	public PlanilhaDTO findByIdPlanilha(@PathVariable("id") String id) {
-		return service.findByIdPlanilha(id);
-	}
-	
-	@Operation(summary = "Deleta os dados de uma planilha de simulação | role: [USUARIO]", tags = "Planilha")
-	@DeleteMapping("/{id}")
-	public void delete(@PathVariable("id") String id) {
-		service.delete(id);
-	}
-	
+	@PostMapping("/upload-planilhas-data")
+    public ResponseEntity<?> uploadPlanilhaData(@RequestParam("file")MultipartFile file){
+        this.service.savePlanilhaToDatabase(file);
+        return ResponseEntity
+                .ok(Map.of("Message" , " Planilha data uploaded and saved to database successfully"));
+    }
+
 	@Operation(summary = "Retorna os dados de todas as planilhas de simulação | role: [USUARIO]", tags = "Planilha")
-	@GetMapping	
-	public ResponseEntity<?> findAll(){
-		return ResponseEntity.ok(service.findAll());
-	}
-
-	
-	
-
+    @GetMapping
+    public ResponseEntity<List<Planilha>> getPremissas(){
+        return new ResponseEntity<>(service.getPlanilha(), HttpStatus.FOUND);
+    }
 }
+
+
