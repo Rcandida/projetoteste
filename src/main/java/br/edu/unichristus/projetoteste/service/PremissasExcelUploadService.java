@@ -8,19 +8,24 @@ import java.util.Objects;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.edu.unichristus.projetoteste.data.model.Premissas;
+import br.edu.unichristus.projetoteste.data.model.Simulacao;
 
 
 
 public class PremissasExcelUploadService {
 	
+	@Autowired
+	private Simulacao simulacao;
+	
 	public static boolean isValidExcelFile(MultipartFile file) {
 		return Objects.equals(file.getContentType(),"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 	}
 	
-	public static List<Premissas> getPremissasDataFromExcel(InputStream inputStream){
+	public static List<Premissas> getPremissasDataFromExcel(InputStream inputStream, Simulacao simulacao){
         List<Premissas> premissas = new ArrayList<>();
 
       
@@ -48,6 +53,9 @@ public class PremissasExcelUploadService {
        	   double retorno_vpl = sheet.getRow(7).getCell(9).getNumericCellValue();
            
            Premissas premissa = new Premissas();
+           
+           premissa.setSimulacao(simulacao);
+           
            premissa.setPremissa_faturamento(premissa_faturamento);
            premissa.setPremissa_investimentoInicial(premissa_investimentoInicial);
            premissa.setPremissa_aliqComissaoVendas(premissa_aliqComissaoVendas);
@@ -65,9 +73,10 @@ public class PremissasExcelUploadService {
            premissa.setRetorno_vpl(retorno_vpl);
            
            
+           
            premissas.add(premissa);
            
-           System.out.println(premissa);
+//           System.out.println(premissa);
            
        } catch (IOException e) {
            e.getStackTrace();

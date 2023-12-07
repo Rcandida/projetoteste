@@ -28,10 +28,10 @@ public class PremissasController {
 	
 	@Operation(summary = "Cadastra os dados de uma premissas de simulação | role: [USUARIO]", tags = "Premissas")
 	@PostMapping("/upload-planilhas-data")
-    public ResponseEntity<?> uploadPremissasData(@RequestParam("file")MultipartFile file){
-        this.service.savePremissasToDatabase(file);
+    public ResponseEntity<?> uploadPremissasData(@RequestParam("file")MultipartFile file, String id){
+        this.service.savePremissasToDatabase(file, id);
         return ResponseEntity
-                .ok(Map.of("Message" , " Premissas data uploaded and saved to database successfully"));
+                .ok(Map.of("Message" , "Dados das premissas carregados com sucesso!"));
     }
 
 	@Operation(summary = "Retorna os dados de todas as premissass de simulação | role: [USUARIO]", tags = "Premissas")

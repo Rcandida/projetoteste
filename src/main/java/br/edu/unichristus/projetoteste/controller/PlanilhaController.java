@@ -28,15 +28,15 @@ public class PlanilhaController {
 	
 	@Operation(summary = "Cadastra os dados de uma planilha de simulação | role: [USUARIO]", tags = "Planilha")
 	@PostMapping("/upload-planilhas-data")
-    public ResponseEntity<?> uploadPlanilhaData(@RequestParam("file")MultipartFile file){
-        this.service.savePlanilhaToDatabase(file);
+    public ResponseEntity<?> uploadPlanilhaData(@RequestParam("file")MultipartFile file, String id){
+        this.service.savePlanilhaToDatabase(file, id);
         return ResponseEntity
-                .ok(Map.of("Message" , " Planilha data uploaded and saved to database successfully"));
+                .ok(Map.of("Message" , "Dados da planilha gravados com sucesso!"));
     }
 
 	@Operation(summary = "Retorna os dados de todas as planilhas de simulação | role: [USUARIO]", tags = "Planilha")
     @GetMapping
-    public ResponseEntity<List<Planilha>> getPremissas(){
+    public ResponseEntity<List<Planilha>> getPlanilha(){
         return new ResponseEntity<>(service.getPlanilha(), HttpStatus.FOUND);
     }
 }

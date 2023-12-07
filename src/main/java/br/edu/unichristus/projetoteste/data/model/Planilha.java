@@ -1,5 +1,6 @@
 package br.edu.unichristus.projetoteste.data.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -22,8 +23,8 @@ public class Planilha {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private String idPlanilha;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Premissas premissas;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	private Simulacao simulacao;
 	
 	
 	private String mesAno;

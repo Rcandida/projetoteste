@@ -8,20 +8,25 @@ import java.util.Objects;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.edu.unichristus.projetoteste.data.model.Planilha;
+import br.edu.unichristus.projetoteste.data.model.Simulacao;
 
 public class PlanilhaExcelUploadService {
+	
+	
+	@Autowired
+	private Simulacao simulacao;
 	
 	public static boolean isValidExcelFile(MultipartFile file) {
 		return Objects.equals(file.getContentType(),"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 	}
 	
-	public static List<Planilha> getPlanilhaDataFromExcel(InputStream inputStream){
+	public static List<Planilha> getPlanilhaDataFromExcel(InputStream inputStream, Simulacao simulacao){
         List<Planilha> planilha = new ArrayList<>();
-
-      
+              
        try {
                    
     	   XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
@@ -101,7 +106,10 @@ public class PlanilhaExcelUploadService {
 		       
 		       Planilha dados = new Planilha();
 		       
+	 
 		       dados.setMesAno(mesAno);
+		       
+		       dados.setSimulacao(simulacao);
 		       
 		       dados.setProjecao_fatBruto(projecao_fatBruto);
 		       dados.setProjecao_impostoSobreFat(projecao_impostoSobreFat);
@@ -171,6 +179,7 @@ public class PlanilhaExcelUploadService {
 		       dados.setPeriodo_fluxoMensal(periodo_fluxoMensal);
 		       dados.setPeriodo_acumulado(periodo_acumulado);
 		       
+		       
 		       planilha.add(dados);
 		       
 		       System.out.println(dados);
@@ -180,7 +189,7 @@ public class PlanilhaExcelUploadService {
        } catch (IOException e) {
            e.getStackTrace();
        }
-       System.out.println(planilha);
+       
        return planilha;
    }
 
