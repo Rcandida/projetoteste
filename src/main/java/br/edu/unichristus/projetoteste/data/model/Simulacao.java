@@ -27,7 +27,7 @@ public class Simulacao {
 	private String idSimulacao;
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private Empresa empresa;
 
 	@Column(unique = true, length = 100)

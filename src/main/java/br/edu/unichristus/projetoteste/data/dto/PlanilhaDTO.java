@@ -10,80 +10,87 @@ import lombok.NoArgsConstructor;
 public class PlanilhaDTO {
 	
 	
+	
 	private String idPlanilha;
 	
-	private String idPremissas;
 	
+	private String idSimulacao;
 	
-	//Projecao de Resultados
 	
 	private String mesAno;
 	
-	private float projecao_fatBruto;
-	private float projecao_impostoSobreFat;	
-	private float projecao_comissoesTaxasPagar;
+	//Projecao de Resultados
 	
-	private float projecao_receitaLiqVendas;
+	private double projecao_fatBruto;
+	private double projecao_impostoSobreFat;	
+	private double projecao_comissoesTaxasPagar;
 	
-	private float projecao_custosProducao;
-	private float projecao_comprasMP;
-	private float projecao_embalagens;
-	private float projecao_entregas;
-	private float projecao_pessoalProducao;
+	private double projecao_receitaLiqVendas;
 	
-	private float projecao_lucroBruto;
+	private double projecao_custosProducao;
+	private double projecao_comprasMP;
+	private double projecao_embalagens;
+	private double projecao_entregas;
+	private double projecao_pessoalProducao;
 	
-	private float projecao_custosOperacionais;
-	private float projecao_pessoalOperacional;
-	private float projecao_administrativos;
-	private float projecao_servicos;
+	private double projecao_lucroBruto;
 	
-	private float projecao_margemContribCustosOper;
+	private double projecao_custosOperacionais;
+	private double projecao_pessoalOperacional;
+	private double projecao_administrativos;
+	private double projecao_servicos;
 	
-	private float projecao_resultOperacional;
-	private float projecao_jurosFinanciamento;
+	private double projecao_margemContribCustosOper;
 	
-	private float projecao_resultTributavel;
-	private float projecao_impostoSobreLucros;
+	private double projecao_resultOperacional;
+	private double projecao_jurosFinanciamento;
 	
-	private float projecao_lucroLiquido;
+	private double projecao_resultTributavel;
+	private double projecao_impostoSobreLucros;
 	
-	private float projecao_lucroLiquidoAcum;
-	private float projecao_margemLucratividade;
-	private float projecao_pontoEquilFinanceiro;
+	private double projecao_lucroLiquido;
+	
+	private double projecao_lucroLiquidoAcum;
+	private double projecao_margemLucratividade;
+	private double projecao_pontoEquilFinanceiro;
 	
 	
 	//Fluxo de Caixa
 	
-	private float fluxo_entrada;
-	private float fluxo_vendaProdutoServico;
-	private float fluxo_capitalProprio;
-	private float fluxo_receitas;
+	private double fluxo_entrada;
+	private double fluxo_vendaProdutoServico;
+	private double fluxo_emprestimo;
+	private double fluxo_capitalProprio;
+	private double fluxo_receitas;
 	
-	private float fluxo_saidas;
-	private float fluxo_comissoes;
-	private float fluxo_custoProducaoEntrega;
-	private float fluxo_materiaPrimaInsumos;
-	private float fluxo_embalagensFCCustoProd;
-	private float fluxo_entregasFCCustoProd;
-	private float fluxo_pessoalFCCustoProd;
+	private double fluxo_saidas;
+	private double fluxo_comissoes;
+	private double fluxo_custoProducaoEntrega;
+	private double fluxo_materiaPrimaInsumos;
+	private double fluxo_embalagensFCCustoProd;
+	private double fluxo_entregasFCCustoProd;
+	private double fluxo_pessoalFCCustoProd;
 	
-	private float fluxo_pessoalCustoFixo;
-	private float fluxo_administrativosCustoFixo;
-	private float fluxo_servicos;
+	private double fluxo_custoFixo;
+	private double fluxo_pessoalCustoFixo;
+	private double fluxo_administrativosCustoFixo;
+	private double fluxo_servicos;
 	
-	private float fluxo_investimentos;
+	private double fluxo_investimentos;
 	
-	private float fluxo_despesasTributarias;
-	private float fluxo_impostosApagar;
-	private float fluxo_provisaoIR;
+	private double fluxo_despesasTributarias;
+	private double fluxo_impostosApagar;
+	private double fluxo_provisaoIR;
 	
-	private float fluxo_despesasFinanceiras;
-	private float fluxo_jurosEmprestimo;
-	private float fluxo_amortizacaoEmprestimo;
+	private double fluxo_despesasFinanceiras;
+	private double fluxo_jurosEmprestimo;
+	private double fluxo_amortizacaoEmprestimo;
 	
-	private float periodo_fluxoMensal;
-	private float periodo_acumulado;
+	private double periodo_fluxoMensal;
+	private double periodo_acumulado;
+
+
+
 
 
 }
