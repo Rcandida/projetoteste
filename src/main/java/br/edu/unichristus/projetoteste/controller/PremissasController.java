@@ -29,6 +29,8 @@ public class PremissasController {
 	@Autowired
 	private PremissasRepository repository;
 	
+	
+	
 	@Operation(summary = "Cadastra os dados de uma premissas de simulação | role: [USUARIO]", tags = "Premissas")
 	@PostMapping("/upload-planilhas-data")
     public ResponseEntity<?> uploadPremissasData(@RequestParam("file")MultipartFile file, String id){

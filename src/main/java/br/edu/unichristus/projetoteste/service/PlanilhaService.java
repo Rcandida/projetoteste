@@ -40,7 +40,10 @@ public class PlanilhaService {
 		}
 	}
 	
-	public List<Planilha> getPlanilha(){
+	public List<Planilha> getPlanilha(String id){
+		
+		var simulacao = DozerConverter.parseObject(simulacaoService.findByIdSimulacao(id), Simulacao.class);
+		
 		return repository.findAll();
 	}
 

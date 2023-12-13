@@ -25,7 +25,8 @@ public class PremissasService {
 	
 	@Autowired
 	private SimulacaoService simulacaoService;
-
+	
+		
 	public void savePremissasToDatabase(MultipartFile file, String id){
 		if(PremissasExcelUploadService.isValidExcelFile(file)){
             try {
@@ -40,8 +41,14 @@ public class PremissasService {
             }
         }}
     
+  
 
-	public PremissasDTO findById(String id) {
+   
+    
+    
+    
+    
+    public PremissasDTO findById(String id) {
 		var premissas = repository.findById(id);
 		
 		if(premissas == null || premissas.isEmpty()) {
@@ -55,28 +62,3 @@ public class PremissasService {
 	
 }
 	
-
-	
-	
-
-//    public List<Premissas> getPremissas(){
-//        return repository.findAll();
-//    }
-//    
-//    public PremissasDTO findById(String id) {
-//		var premissas = repository.findById(id);
-//		
-//		if(premissas == null || premissas.isEmpty()) {
-//			throw new CommonsException(HttpStatus.NOT_FOUND, "unichristus.projetoupload.service.premissas.notfound.exception", "Premissas não localizadas");
-//		}
-//		return DozerConverter.parseObject(premissas.get(), PremissasDTO.class);
-//		
-//	}
-//
-//	public Object findByIdPremissas(String idPremissas) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//	
-//}
-//	
