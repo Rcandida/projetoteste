@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.edu.unichristus.projetoteste.data.model.Planilha;
+import br.edu.unichristus.projetoteste.repository.PlanilhaRepository;
 import br.edu.unichristus.projetoteste.service.PlanilhaService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
@@ -26,6 +26,9 @@ public class PlanilhaController {
 	@Autowired
 	private PlanilhaService service;
 	
+	@Autowired
+	private PlanilhaRepository repository;
+	
 	@Operation(summary = "Cadastra os dados de uma planilha de simulação | role: [USUARIO]", tags = "Planilha")
 	@PostMapping("/upload-planilhas-data")
     public ResponseEntity<?> uploadPlanilhaData(@RequestParam("file")MultipartFile file, String id){
@@ -36,8 +39,8 @@ public class PlanilhaController {
 
 	@Operation(summary = "Retorna os dados de todas as planilhas de simulação | role: [USUARIO]", tags = "Planilha")
     @GetMapping
-    public ResponseEntity<List<Planilha>> getPlanilha(){
-        return new ResponseEntity<>(service.getPlanilha(), HttpStatus.FOUND);
+    public List<Planilha> obterPorIdSimulacao(String simulacaoId) {
+        return repository.findBySimulacao(simulacaoId);
     }
 }
 
