@@ -63,4 +63,11 @@ public class UserController {
 	public ResponseEntity<?> findAll(){
 		return ResponseEntity.ok(service.findAll());
 	}
+	
+	@Operation(summary = "Login usuário | role: [USER]", tags = "User")
+	@PostMapping("/auth/signin")
+	public ResponseEntity<?> loginUser(@RequestBody UserDTO user) {
+		service.loginUser(user);
+		return ResponseEntity.ok().build();
+	}
 }
