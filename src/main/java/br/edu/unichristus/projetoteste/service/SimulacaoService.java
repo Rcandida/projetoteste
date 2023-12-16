@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.edu.unichristus.projetoteste.converter.DozerConverter;
 import br.edu.unichristus.projetoteste.data.dto.SimulacaoDTO;
@@ -22,7 +23,13 @@ public class SimulacaoService {
 	@Autowired
 	private EmpresaService empresaService;
 	
-	public SimulacaoDTO save(SimulacaoDTO dto) {
+	@Autowired
+	private PremissasService premissaService;
+	
+	@Autowired
+	private PlanilhaService planilhaService;
+	
+	public SimulacaoDTO save(SimulacaoDTO dto, MultipartFile file) {
 		
 		var empresa = DozerConverter.parseObject(empresaService.findByIdEmpresa(dto.getIdEmpresa()), Empresa.class);
 			
@@ -33,11 +40,17 @@ public class SimulacaoService {
 		
 		simulacao.setEmpresa(empresa);
 		
-		var simulacaoDTOsaved = DozerConverter.parseObject(repository.save(simulacao), SimulacaoDTO.class);
+		var simulacaoSaved = repository.save(simulacao);
 		
-		simulacaoDTOsaved.setIdEmpresa(empresa.getIdEmpresa());
+		var simulacaoDTOSaved = DozerConverter.parseObject(simulacaoSaved, SimulacaoDTO.class);
 		
-		return simulacaoDTOsaved;
+		simulacaoDTOSaved.setIdEmpresa(empresa.getIdEmpresa());
+		
+		premissaService.savePremissasToDatabase(file, simulacaoSaved);
+		
+		planilhaService.savePlanilhaToDatabase(file, simulacaoSaved);
+		
+		return simulacaoDTOSaved;
 	}
 	
 	public void delete(String id) {

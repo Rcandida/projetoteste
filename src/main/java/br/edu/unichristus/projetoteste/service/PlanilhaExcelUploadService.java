@@ -8,17 +8,15 @@ import java.util.Objects;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.edu.unichristus.projetoteste.data.model.Planilha;
 import br.edu.unichristus.projetoteste.data.model.Simulacao;
 
+@Service
 public class PlanilhaExcelUploadService {
 	
-	
-	@Autowired
-	private Simulacao simulacao;
 	
 	public static boolean isValidExcelFile(MultipartFile file) {
 		return Objects.equals(file.getContentType(),"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
