@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.edu.unichristus.projetoteste.converter.DozerConverter;
 import br.edu.unichristus.projetoteste.data.dto.SimulacaoDTO;
-import br.edu.unichristus.projetoteste.data.model.Empresa;
 import br.edu.unichristus.projetoteste.data.model.Simulacao;
 import br.edu.unichristus.projetoteste.exception.CommonsException;
 import br.edu.unichristus.projetoteste.repository.SimulacaoRepository;
@@ -20,8 +19,8 @@ public class SimulacaoService {
 	@Autowired
 	private SimulacaoRepository repository;
 	
-	@Autowired
-	private EmpresaService empresaService;
+	/*@Autowired
+	private EmpresaService empresaService;*/
 	
 	@Autowired
 	private PremissasService premissaService;
@@ -31,20 +30,20 @@ public class SimulacaoService {
 	
 	public SimulacaoDTO save(SimulacaoDTO dto, MultipartFile file) {
 		
-		var empresa = DozerConverter.parseObject(empresaService.findByIdEmpresa(dto.getIdEmpresa()), Empresa.class);
+		//var empresa = DozerConverter.parseObject(empresaService.findByIdEmpresa(dto.getIdEmpresa()), Empresa.class);//
 			
 		if(dto.getIdSimulacao() != null) {
 			this.findByIdSimulacao(dto.getIdSimulacao());
 		}
 		var simulacao = DozerConverter.parseObject(dto, Simulacao.class);
 		
-		simulacao.setEmpresa(empresa);
+		//simulacao.setEmpresa(empresa);//
 		
 		var simulacaoSaved = repository.save(simulacao);
 		
 		var simulacaoDTOSaved = DozerConverter.parseObject(simulacaoSaved, SimulacaoDTO.class);
 		
-		simulacaoDTOSaved.setIdEmpresa(empresa.getIdEmpresa());
+		//simulacaoDTOSaved.setIdEmpresa(empresa.getIdEmpresa());//
 		
 		premissaService.savePremissasToDatabase(file, simulacaoSaved);
 		
@@ -65,7 +64,7 @@ public class SimulacaoService {
 
 		}
 		var dto = DozerConverter.parseObject(simulacao.get(), SimulacaoDTO.class);
-		dto.setIdEmpresa(simulacao.get().getEmpresa().getIdEmpresa());
+		//dto.setIdEmpresa(simulacao.get().getEmpresa().getIdEmpresa());//
 		return dto;
 	}
 	

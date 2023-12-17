@@ -14,7 +14,7 @@ public class SimulacaoDTO {
 	private String idSimulacao;
 	
 	
-	private String idEmpresa;
+	//private String idEmpresa;//
 
 	
 	private String nomeSimulacao;

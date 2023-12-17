@@ -44,12 +44,12 @@ public class UserService {
 		
 	}
 	
-	public void delete(String id) {
+	public void delete(Long id) {
 		this.findById(id);
 		repository.deleteById(id);
 	}
 	
-	public UserDTO findById(String id) {
+	public UserDTO findById(Long id) {
 		var user = repository.findById(id);
 		if(user == null || user.isEmpty()) {
 			throw new CommonsException(HttpStatus.NOT_FOUND, "unichristus.projetoteste.service.user.notfound.exception", "Usuário não encontrado");

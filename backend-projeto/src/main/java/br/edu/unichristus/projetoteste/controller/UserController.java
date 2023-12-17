@@ -45,14 +45,14 @@ public class UserController {
 		@ApiResponse(responseCode = "404", description = "Usuário não encontrado"),
 		@ApiResponse(responseCode = "500", description = "Erro interno no servidor") })
 	@GetMapping("/{id}")
-	public UserDTO findById(@PathVariable("id") String id) {
+	public UserDTO findById(@PathVariable("id") Long id) {
 		return service.findById(id);
 	}
 	
 	
 	@Operation(summary = "Deleta os dados de um usuário a partir do ID | role: [ADMIN]", tags = "User")
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable("id") String id) {
+	public void delete(@PathVariable("id") Long id) {
 		service.delete(id);
 	}
 	
