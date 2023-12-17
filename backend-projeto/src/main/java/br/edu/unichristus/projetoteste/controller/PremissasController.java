@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("premissas")
+@RequestMapping("/api/v1/premissas")
 public class PremissasController {
 
 	

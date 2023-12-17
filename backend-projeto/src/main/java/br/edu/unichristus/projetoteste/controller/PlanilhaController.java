@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("planilha")
+@RequestMapping("/api/v1/planilha")
 public class PlanilhaController {
 	
 	@Autowired
